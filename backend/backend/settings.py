@@ -25,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3hkf5$l4jkib1b=4gg)j1zjh*r&7=)b(x73b_g5$lcetnrc@**'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = os.environ.get("DEBUG") == "True"
 
 ALLOWED_HOSTS = ['*']
 
@@ -132,4 +133,5 @@ STATIC_URL = 'static/'
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'https://book-management-system-1-i5xy.onrender.com',
 ]
