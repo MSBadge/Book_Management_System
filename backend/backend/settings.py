@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-import dj_database_url
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,9 +24,9 @@ SECRET_KEY = 'django-insecure-3hkf5$l4jkib1b=4gg)j1zjh*r&7=)b(x73b_g5$lcetnrc@**
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = False
-DEBUG = os.environ.get("DEBUG") == "True"
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -48,8 +46,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',        # added
-    'whitenoise.middleware.WhiteNoiseMiddleware',   # added
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,17 +77,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'library_qfej',
-    #     'USER': 'mukul',
-    #     'PASSWORD': 'bnT6lRiQeMJ4C5IwZEKyX5rfTbO5GoFU',
-    #     'HOST': 'dpg-d8aplbvavr4c73dq99bg-a',
-    #     'PORT': '5432',
-    # }
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL")
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'library_qfej',
+        'USER': 'mukul',
+        'PASSWORD': 'bnT6lRiQeMJ4C5IwZEKyX5rfTbO5GoFU',
+        'HOST': 'dpg-d8aplbvavr4c73dq99bg-a',
+        'PORT': '5432',
+    }
 }
 
 
@@ -130,6 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = BASE_DIR/'staticfiles'
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
