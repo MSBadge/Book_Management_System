@@ -26,9 +26,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:5173',
-#     'https://book-management-system-1-i5xy.onrender.com',
+CORS_ALLOWED_ORIGINS = [
+    'https://book-management-system-1-i5xy.onrender.com'
+]
 
 
 STORAGES = {

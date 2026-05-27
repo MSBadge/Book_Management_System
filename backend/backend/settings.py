@@ -128,5 +128,4 @@ STATIC_ROOT = BASE_DIR/'staticfiles'
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
-    'https://book-management-system-1-i5xy.onrender.com',
 ]
