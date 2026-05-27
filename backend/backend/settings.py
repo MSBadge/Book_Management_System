@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'library_qfej',
-        'USER': 'mukul',
-        'PASSWORD': 'bnT6lRiQeMJ4C5IwZEKyX5rfTbO5GoFU',
-        'HOST': 'dpg-d8aplbvavr4c73dq99bg-a',
+        'NAME': 'library',
+        'USER': 'postgres',
+        'PASSWORD': '121212',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

@@ -2,21 +2,27 @@ import React, { useEffect, useState } from 'react'
 import { deleteBook, listBook } from '../api/BookAPI'
 import { Post } from './Post'
 import { Update } from './Update'
+import LinearProgress from '@mui/material/LinearProgress';
+import Box from '@mui/material/Box';
+import Buffring from './Buffring';
 
 export const Home = () => {
 
   // list data
   const [getList, setData] = useState([])
   const [selectedBook, setSelectedBook] = useState(null)
+  const [loading, setLoading] = useState(false)
 
 
   const getAllData = async () => {
+    setLoading(true)
     try {
       const res = await listBook()
       setData(res.data)
     } catch (error) {
-      console.log(error.data);
-      
+      console.log(error.data)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -51,7 +57,7 @@ export const Home = () => {
       />
 
       <div className='w-full h-screen'>
-        <div className='m-4 p-2'>
+        <div className='m-4 p-2 '>
           <div className='flex justify-center'>
             <table>
               <caption>Book List</caption>
@@ -66,22 +72,34 @@ export const Home = () => {
                 </tr>
               </thead>
               <tbody>
-                {getList.map((item, pk) => (
-                  <tr key={item.id}>
-                    <td className='border border-gray-300 px-4 py-2'>{pk + 1}</td>
-                    <td className='border border-gray-300 px-4 py-2 text-justify'>{item.title}</td>
-                    <td className='border border-gray-300 px-4 py-2 text-justify'>{item.author}</td>
-                    <td className='border border-gray-300 px-4 py-2 text-justify'>{item.genre}</td>
-                    <td className='border border-gray-300 px-4 py-2 text-justify'>{item.publication_year}</td>
-                    <td className='border border-gray-300 px-4 py-2 text-justify'>
-                      <button className='border border-green-500 bg-green-400 m-1 p-2 hover:bg-green-500 active:bg-green-800 rounded-4xl' onClick={()=>{handleEditClick(item)}} >Edit</button>
-                      <button className='border border-red-500 bg-red-400 m-1 p-2 hover:bg-red-500 active:bg-red-800 rounded-4xl'
-                      type='submit'
-                      onClick={()=>{handleDeleteBook(item.id)}}
-                      >Delete</button>
+                {loading ? (
+                  <tr>
+                    <td colSpan={6} className='border border-gray-300 px-4 py-10 text-center'>
+                      <Buffring />
                     </td>
                   </tr>
-                ))}
+                ) : getList.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className='border border-gray-300 px-4 py-10 text-center'>No books found.</td>
+                  </tr>
+                ) : (
+                  getList.map((item, pk) => (
+                    <tr key={item.id}>
+                      <td className='border border-gray-300 px-4 py-2'>{pk + 1}</td>
+                      <td className='border border-gray-300 px-4 py-2 text-justify'>{item.title}</td>
+                      <td className='border border-gray-300 px-4 py-2 text-justify'>{item.author}</td>
+                      <td className='border border-gray-300 px-4 py-2 text-justify'>{item.genre}</td>
+                      <td className='border border-gray-300 px-4 py-2 text-justify'>{item.publication_year}</td>
+                      <td className='border border-gray-300 px-4 py-2 text-justify'>
+                        <button className='border border-green-500 bg-green-400 m-1 p-2 hover:bg-green-500 active:bg-green-800 rounded-4xl' onClick={()=>{handleEditClick(item)}} >Edit</button>
+                        <button className='border border-red-500 bg-red-400 m-1 p-2 hover:bg-red-500 active:bg-red-800 rounded-4xl'
+                        type='submit'
+                        onClick={()=>{handleDeleteBook(item.id)}}
+                        >Delete</button>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
