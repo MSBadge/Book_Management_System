@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { postBook } from '../api/BookAPI'
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export const Post = ({onStuAdd}) => {
 
@@ -41,8 +43,8 @@ export const Post = ({onStuAdd}) => {
         <div className='my-10 w-full h-50 flex justify-center items-center'>
                 <div className='border border-white rounded-2xl my-10 p-10 flex'>
                     <form className='grid grid-cols-2 gap-5 text-center' onSubmit={handleSubmit}>
-                        <input type="text" placeholder='Title' name='title' value={formData.title} onChange={handleChenge} />
-                        <input type="text" placeholder='Author' name='author' value={formData.author} onChange={handleChenge}/>
+                        <input type="text" placeholder='Title' name='title' value={formData.title} onChange={handleChenge} className='size-10 w-full'/>
+                        <input type="text" placeholder='Author' name='author' value={formData.author} onChange={handleChenge} className='size-10 w-full'/>
                         <select name="genre" id="" onChange={handleChenge} value={formData.genre}>
                             <option className=' bg-black' value="Ficton">Fiction</option>
                             <option className='bg-black' value="Non-Fiction">Non-Fiction</option>
