@@ -13,11 +13,12 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import avatar from '../assets/avtar.jpg'
 
 
 const pages = [
   { name: 'Dashboard', path: '/dashboard' },
-  { name: 'List', path: '/list' },
+  { name: 'Books', path: '/books' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contact' },
 ];
@@ -140,7 +141,7 @@ export function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={avatar} />
               </IconButton>
             </Tooltip>
             <Menu
