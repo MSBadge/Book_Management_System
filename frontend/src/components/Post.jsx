@@ -21,7 +21,7 @@ export const Post = ({onStuAdd}) => {
     // submit form
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try {            
+        try {
             await postBook(formData)
             setFormData({
                 title: '',
@@ -33,8 +33,7 @@ export const Post = ({onStuAdd}) => {
                 onStuAdd ()
             }
         } catch (error) {
-            console.log(error);
-            
+            console.error(error.response?.data || error.message || error)
         }
     }
 
@@ -45,15 +44,16 @@ export const Post = ({onStuAdd}) => {
                     <form className='grid grid-cols-2 gap-5 text-center' onSubmit={handleSubmit}>
                         <input type="text" placeholder='Title' name='title' value={formData.title} onChange={handleChenge} className='size-10 w-full'/>
                         <input type="text" placeholder='Author' name='author' value={formData.author} onChange={handleChenge} className='size-10 w-full'/>
-                        <select name="genre" id="" onChange={handleChenge} value={formData.genre}>
-                            <option className=' bg-black' value="Ficton">Fiction</option>
-                            <option className='bg-black' value="Non-Fiction">Non-Fiction</option>
-                            <option className='bg-black' value="Science">Science</option>
-                            <option className='bg-black' value="History">History</option>
-                            <option className='bg-black' value="Technology">Technology</option>
-                            <option className='bg-black' value="Biography">Biography</option>
-                            <option className='bg-black' value="Education">Education</option>
-                            <option className='bg-black' value="Comics">Comics</option>
+                        <select name="genre" id="" onChange={handleChenge} value={formData.genre} className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-2 text-slate-100">
+                            <option value="" disabled>Select genre</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="Non-Fiction">Non-Fiction</option>
+                            <option value="Science">Science</option>
+                            <option value="History">History</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Biography">Biography</option>
+                            <option value="Education">Education</option>
+                            <option value="Comics">Comics</option>
                         </select>
                         <button type="submit" className='border border-white rounded-2xl bg-green-600 font-medium hover:bg-green-800 active:bg-green-900 py-2 text-xl'>Save</button>             
                     </form>
