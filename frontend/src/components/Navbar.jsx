@@ -12,8 +12,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import BookIcon from '@mui/icons-material/Book';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 
 
@@ -107,7 +105,7 @@ export function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <LocalLibraryIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}/>
           <Typography
             variant="h5"
             noWrap
@@ -124,7 +122,7 @@ export function Navbar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Mukul Badge
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
